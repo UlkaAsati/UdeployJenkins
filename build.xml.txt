@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+ <project default="war" name="SampleBuild">
+	<path id="compile.classpath"> 	
+		<fileset dir="D:\BM competency\uDeploy\apache-ant-1.9.4\lib">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+	<target name="init">
+		<mkdir dir="build/classes"/>
+		<mkdir dir="dist"/>
+	</target> 
+	<target name="compile" depends="init"> 
+		<javac target="1.5" srcdir="src" debug="true" destdir="build/classes">
+		<classpath refid="compile.classpath"/>
+		</javac>
+	</target> 
+	<target name="war" depends="compile">
+		<war webxml="WEB-INF/web.xml" destfile="dist/SampleBuild.war">
+			
+			<classes dir="build/classes"/>
+		</war>
+	</target>
+	<target name="clean">
+		<delete dir="dist"/>
+		<delete dir="build"/>
+	</target>
+</project>
